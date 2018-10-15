@@ -13,7 +13,7 @@ namespace FakeReddit.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; } 
     }
-
+    //sdf
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
