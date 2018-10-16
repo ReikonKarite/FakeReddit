@@ -1,0 +1,17 @@
+﻿@model FakeReddit.ViewModels.SubRedditPostsViewModel
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@foreach (var post in Model.Posts)
+{
+    <text>------------------------------------------------------------------</text><br />
+    @post.Title<br />
+    @post.Content<br />
+    <text>------------------------------------------------------------------</text><br />
+}
