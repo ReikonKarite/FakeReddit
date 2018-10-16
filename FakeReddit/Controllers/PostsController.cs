@@ -33,7 +33,7 @@ namespace FakeReddit.Controllers
             //var query = from e in Employee
             //            join d in Dept on e.deptno equals d.deptno
             //            select new { e.deptno, d.deptno };
-
+            //linq query to join posts and subreddits and retrieve the posts.
             var query = (from e in _context.Posts
                          join d in _context.Subreddits on e.SubRedditID equals d.Id
                          where d.Title == subReddit
