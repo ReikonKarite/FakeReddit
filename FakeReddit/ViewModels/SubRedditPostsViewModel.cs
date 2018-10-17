@@ -13,6 +13,7 @@ namespace FakeReddit.ViewModels
 
        public List<Post> Posts { get; set; }
        public List<Subreddit> Subreddits{ get; set; }
+        public List<User> Users { get; set; }
 
         public string Title { get; set; } //posts
         public string Content { get; set; } //posts
