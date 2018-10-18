@@ -60,8 +60,10 @@ namespace FakeReddit.Controllers
             {
                 Posts = posts.ToList()
             };
-            
 
+            //var players = _context.Database
+            //        .SqlQuery<SubRedditPostsViewModel>("select * from posts inner join Subreddits on posts.SubRedditID = Subreddits.Id inner join Users on users.Id = posts.UserID where Subreddits.Title = 'gaming'")
+            //        .ToList<SubRedditPostsViewModel>();
 
 
             return View(myviewmodel);

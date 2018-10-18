@@ -1,0 +1,15 @@
+﻿
+@model IEnumerable<FakeReddit.Models.Subreddit>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<ul>
+    @foreach (var item in Model)
+    {
+
+    <li>@Html.ActionLink(item.Title, "Index", "Posts", new { SubReddit = item.Title }, null)</li>
+    }
+</ul>

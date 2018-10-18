@@ -14,9 +14,16 @@ namespace FakeReddit
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Subreddit",
+               "GetAllSubs",
+               "r",
+               new { Controller = "SubReddits", Action = "Index" });
+
+            routes.MapRoute(
+                "GetPostsForSub",
                 "r/{subReddit}",
                 new { Controller = "Posts", Action="Index", subReddit=UrlParameter.Optional });
+
+           
 
             routes.MapRoute(
                 name: "Default",
