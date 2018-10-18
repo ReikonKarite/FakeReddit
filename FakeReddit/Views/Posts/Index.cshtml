@@ -4,15 +4,29 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+
 }
+
+
+
 
 <h2>Index</h2>
+<div class="row" style="border-top:1px solid black">
+    @foreach (var post in Model.Posts)
+    {
+    <div class="col-lg-12" style="background-color:lightgrey; border-bottom:1px solid Black ">
+        <div class="col-lg-12">
+            <a href="#"><h2>@post.Title</h2></a>
+        </div>
 
-@foreach (var post in Model.Posts)
-{
-    <text>------------------------------------------------------------------</text><br />
-    @post.Title<br />
-    @post.Content<br />
-    @post.User.UserName<br />
-    <text>------------------------------------------------------------------</text><br />
-}
+        <div class="col-lg-6">@post.ApplicationUser.Email</div>
+        @Html.ActionLink("Vote Count","GetVoteCount","Posts", new {id= post.Id }, null)
+        
+        @{ 
+            
+        }
+    </div>
+  
+    }
+</div>

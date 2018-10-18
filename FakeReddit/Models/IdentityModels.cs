@@ -23,7 +23,6 @@ namespace FakeReddit.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Subreddit> Subreddits{ get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<UserVote> UserVotes { get; set; }
 
         public ApplicationDbContext()

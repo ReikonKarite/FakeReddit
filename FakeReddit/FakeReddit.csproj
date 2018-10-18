@@ -229,12 +229,29 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\SubredditsController.cs" />
+    <Compile Include="Controllers\UserVotesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201810121242520_InitialModel.cs" />
     <Compile Include="Migrations\201810121242520_InitialModel.Designer.cs">
       <DependentUpon>201810121242520_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181103443_20181018.cs" />
+    <Compile Include="Migrations\201810181103443_20181018.Designer.cs">
+      <DependentUpon>201810181103443_20181018.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181226148_removeUserIDColumn.cs" />
+    <Compile Include="Migrations\201810181226148_removeUserIDColumn.Designer.cs">
+      <DependentUpon>201810181226148_removeUserIDColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181319414_AddApplicationUserToUserVotes.cs" />
+    <Compile Include="Migrations\201810181319414_AddApplicationUserToUserVotes.Designer.cs">
+      <DependentUpon>201810181319414_AddApplicationUserToUserVotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181326031_RemoveUserIDFromUserVote.cs" />
+    <Compile Include="Migrations\201810181326031_RemoveUserIDFromUserVote.Designer.cs">
+      <DependentUpon>201810181326031_RemoveUserIDFromUserVote.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -313,6 +330,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\UserVotes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -330,6 +348,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810121242520_InitialModel.resx">
       <DependentUpon>201810121242520_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181103443_20181018.resx">
+      <DependentUpon>201810181103443_20181018.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181226148_removeUserIDColumn.resx">
+      <DependentUpon>201810181226148_removeUserIDColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181319414_AddApplicationUserToUserVotes.resx">
+      <DependentUpon>201810181319414_AddApplicationUserToUserVotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181326031_RemoveUserIDFromUserVote.resx">
+      <DependentUpon>201810181326031_RemoveUserIDFromUserVote.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

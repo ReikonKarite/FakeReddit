@@ -24,6 +24,13 @@ namespace FakeReddit.Controllers
             _context.Dispose();
         }
 
+
+        public string GetVoteCount (int Id)
+        {
+            var result = new UserVotesController().CalculateVotes(Id);
+            return result;
+        }
+
         // GET: Posts
         public ActionResult Index(string subReddit)
         {
@@ -31,7 +38,7 @@ namespace FakeReddit.Controllers
             var posts = _context.Posts
                                 .Where(b=>b.SubReddit.Title == subReddit)
                                 .Include(b => b.SubReddit)
-                                .Include(b=>b.User)
+                                .Include(b=>b.ApplicationUser)
                                 .ToList();
 
            // //var posts = _context.Posts.Include(c => c.SubReddit).SingleOrDefault(c => c.Title == subReddit);

@@ -9,8 +9,7 @@ namespace FakeReddit.Models
     {
         public int Id { get; set; }
 
-        public User User { get; set; }
-        public int UserID { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
 
         public Post Post { get; set; }

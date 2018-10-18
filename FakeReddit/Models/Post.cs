@@ -19,9 +19,12 @@ namespace FakeReddit.Models
         public Subreddit SubReddit { get; set; }
         public int SubRedditID { get; set; }
 
-        public User User { get; set; }
-        public int UserID { get; set; }
+        //public User User { get; set; }    
+        //public int UserID { get; set; }
 
-        
+        //public string UserID { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
+
     }
 }
