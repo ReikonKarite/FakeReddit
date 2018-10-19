@@ -72,7 +72,7 @@ namespace FakeReddit.Controllers
             //        .SqlQuery<SubRedditPostsViewModel>("select * from posts inner join Subreddits on posts.SubRedditID = Subreddits.Id inner join Users on users.Id = posts.UserID where Subreddits.Title = 'gaming'")
             //        .ToList<SubRedditPostsViewModel>();
             var players = _context.Database
-                                    .SqlQuery<SubRedditPostsViewModel>("select sum(VoteType) VoteCount, Posts.Title, Posts.Content, Posts.Id from UserVotes inner join posts on posts.Id = UserVotes.PostID inner join AspNetUsers on AspNetUsers.Id = posts.ApplicationUser_Id inner join Subreddits on Subreddits.Id = posts.SubRedditID group by PostID, Posts.Title, Posts.Content, Posts.Id")
+                                    .SqlQuery<SubRedditPostsViewModel>("select sum(VoteType) VoteCount, Posts.Title, Posts.Content, Posts.Id, SubReddits.Title SubTitle, UserName from UserVotes inner join posts on posts.Id = UserVotes.PostID inner join AspNetUsers on AspNetUsers.Id = posts.ApplicationUser_Id inner join Subreddits on Subreddits.Id = posts.SubRedditID where subreddits.Title = {0} group by PostID, Posts.Title, Posts.Content, Posts.Id, SubReddits.Title, UserName",subReddit)
                                     .ToList<SubRedditPostsViewModel>();
 
             return View(players);
