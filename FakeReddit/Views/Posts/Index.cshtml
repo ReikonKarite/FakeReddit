@@ -1,4 +1,4 @@
-﻿@model FakeReddit.ViewModels.SubRedditPostsViewModel
+﻿@model IEnumerable<FakeReddit.ViewModels.SubRedditPostsViewModel>
 
 
 @{
@@ -10,22 +10,20 @@
 
 
 
-
 <h2>Index</h2>
 <div class="row" style="border-top:1px solid black">
-    @foreach (var post in Model.Posts)
+    @foreach (var item in Model)
     {
     <div class="col-lg-12" style="background-color:lightgrey; border-bottom:1px solid Black ">
         <div class="col-lg-12">
-            <a href="#"><h2>@post.Title</h2></a>
+            <a href="#"><h2>@item.Title</h2></a>
         </div>
 
-        <div class="col-lg-6">@post.ApplicationUser.Email</div>
-        @Html.ActionLink("Vote Count","GetVoteCount","Posts", new {id= post.Id }, null)
+        <div class="col-lg-6">@item.Content</div>
+        <h1>Vote Count: @item.VoteCount</h1>
+
         
-        @{ 
-            
-        }
+
     </div>
   
     }
