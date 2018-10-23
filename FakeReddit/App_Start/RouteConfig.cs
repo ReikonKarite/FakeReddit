@@ -23,7 +23,11 @@ namespace FakeReddit
                 "r/{subReddit}",
                 new { Controller = "Posts", Action="Index", subReddit=UrlParameter.Optional });
 
-           
+            routes.MapRoute(
+                "GetActionForSub",
+                "r/{subReddit}/{Controller}/{Action}",
+                new { Controller = "Posts", Action = "Index", subReddit = UrlParameter.Optional });
+
 
             routes.MapRoute(
                 name: "Default",

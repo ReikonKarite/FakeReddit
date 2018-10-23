@@ -1,9 +1,1 @@
-﻿select * from Posts
-select * from Subreddits
-select * from Users
-
-
-select * from posts
-inner join Subreddits on posts.SubRedditID = Subreddits.Id
-inner join Users on users.Id = posts.UserID
-where Subreddits.Title = 'gaming'
+﻿select isnull(sum(VoteType),0) VoteCount, Posts.Title, Posts.Content, Posts.Id, SubReddits.Title SubTitle, UserName, Subreddits.Id SubID from UserVotes right join posts on posts.Id = UserVotes.PostID inner join AspNetUsers on AspNetUsers.Id = posts.ApplicationUser_Id inner join Subreddits on Subreddits.Id = posts.SubRedditID where subreddits.Title = 'gaming' group by PostID, Posts.Title, Posts.Content, Posts.Id, SubReddits.Title, UserName,Subreddits.Id
