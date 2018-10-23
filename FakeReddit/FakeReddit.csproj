@@ -253,6 +253,14 @@
     <Compile Include="Migrations\201810181326031_RemoveUserIDFromUserVote.Designer.cs">
       <DependentUpon>201810181326031_RemoveUserIDFromUserVote.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810230825517_AddUserIDForeignKey.cs" />
+    <Compile Include="Migrations\201810230825517_AddUserIDForeignKey.Designer.cs">
+      <DependentUpon>201810230825517_AddUserIDForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810230833063_AddUserIDForeignKey1.cs" />
+    <Compile Include="Migrations\201810230833063_AddUserIDForeignKey1.Designer.cs">
+      <DependentUpon>201810230833063_AddUserIDForeignKey1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -291,7 +299,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -327,6 +337,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Subreddits\Index.cshtml" />
+    <Content Include="Views\Posts\NewPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -360,6 +371,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810181326031_RemoveUserIDFromUserVote.resx">
       <DependentUpon>201810181326031_RemoveUserIDFromUserVote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810230825517_AddUserIDForeignKey.resx">
+      <DependentUpon>201810230825517_AddUserIDForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810230833063_AddUserIDForeignKey1.resx">
+      <DependentUpon>201810230833063_AddUserIDForeignKey1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

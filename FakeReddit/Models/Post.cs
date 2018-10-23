@@ -24,6 +24,7 @@ namespace FakeReddit.Models
 
         //public string UserID { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public string ApplicationUser_Id { get; set; }
 
 
     }

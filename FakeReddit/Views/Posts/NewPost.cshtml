@@ -1,0 +1,32 @@
+﻿@model FakeReddit.Models.Post
+@{
+                /**/
+
+                ViewBag.Title = "NewPost";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NewPost</h2>
+
+@using (Html.BeginForm("Save", "Posts"))
+{
+    <div class="form-group">
+        @Html.LabelFor(s => s.Title)
+        @Html.TextBoxFor(s => s.Title)
+        @Html.ValidationMessageFor(s => s.Title)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(s => s.Content)
+        @Html.TextBoxFor(s => s.Content)
+        @Html.ValidationMessageFor(s => s.Content)
+    </div>
+
+    @Html.HiddenFor(s=> Model.SubRedditID)
+    @Html.HiddenFor(s => Model.ApplicationUser_Id)
+
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+}
