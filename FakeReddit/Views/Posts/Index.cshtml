@@ -4,6 +4,14 @@
         text-transform: capitalize;
     }
 
+
+     .myNewDivHeight{
+         height:110px;
+     }
+
+
+
+
 </style>
 
 @{
@@ -20,21 +28,51 @@
         </div>
         <div class="col-lg-4">
 
-            @Html.ActionLink("Add Post", "New", "Posts", new { Id = @ViewBag.SubId }, new { @class = "btn btn-success btn-block btn-lg", @style= "min-height: 53px; margin-bottom: 5px; margin-top: 5px;line-height: 180 %;" })
+            @Html.ActionLink("Add Post", "New", "Posts", new { Id = @ViewBag.SubId }, new { @class = "btn btn-success btn-block btn-lg", @style= "min-height: 53px; margin-bottom: 5px; margin-top: 5px;line-height: 180%;" })
         </div>
     </div>
 </div>
 <div class="row" style="border-top:1px solid black">
     @foreach (var item in Model)
     {
-    <div class="col-lg-12" style="background-color:lightgrey; border-bottom:1px solid Black ">
-        <div class="col-lg-12">
-            <a href="#"><h2>@item.Title</h2></a>
+    <div class="col-lg-12 myNewDivHeight" style="background-color:lightgrey; border-bottom:1px solid Black ">
+
+        <div class="col-lg-11">
+            <h2>@item.Title</h2><br />
+            @item.UserName
+        </div>
+        <div class="col-lg-1 myNewDivHeight">
+            ▲<br />
+            @item.VoteCount<br/>
+            ▼<br />
         </div>
 
-        <div class="col-lg-6">@item.Content</div>
-        <div class="col-lg-6 text-right">@item.VoteCount</div>
-        <div class="col-lg-4">@item.UserName</div>
+
+
+
+
+
+        @*<div class="col-lg-11">
+            <a href="#"><h2>@item.Title</h2></a>
+        </div>
+        <div class="col-lg-1">▲</div>
+
+
+        <div class="col-lg-11">
+            @item.Content
+        </div>
+        <div class="col-lg-1">@item.VoteCount</div>
+
+
+        <div class="col-lg-11">
+            @item.UserName
+        </div>
+        <div class="col-lg-1">▼</div>*@
+
+
+
+        @*<div class="col-lg-6">@item.Content</div>
+        <div class="col-lg-12">@item.UserName</div>*@
 
 
 
