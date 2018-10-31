@@ -42,9 +42,10 @@
             @item.UserName
         </div>
         <div class="col-lg-1 myNewDivHeight">
-            ▲<br />
-            @item.VoteCount<br/>
-            ▼<br />
+
+            @Html.ActionLink("▲", "AddVote", "UserVotes", new { id = item.PostID, type = 1 }, null)<br />
+            @item.VoteCount<br />
+            @Html.ActionLink("▼", "AddVote", "UserVotes", new { id = item.PostID, type = -1 }, null)<br />
         </div>
 
 

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using FakeReddit.ViewModels;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace FakeReddit.Controllers
 {
@@ -53,6 +54,60 @@ namespace FakeReddit.Controllers
                                                 .Where(b=>b.PostID == ID).Single();
                                                 
             return voteTot.total.ToString();
+        }
+
+        public ActionResult AddVote(int id, int type)
+        {
+            //Upvotes a particular post
+            //passs in PostID, VoteType(+1 or -1), Application UserID, 
+
+            UserVote model = new UserVote();
+
+            var s = User.Identity.GetUserId();
+            if (s != null)
+            {
+                //check to see if record exists
+                var voteTot = _context.UserVotes.
+                                                    Select(v => new { v.PostID, v.ApplicationUser_Id, v.VoteType, v.Id })
+                                                    .Where(b => b.PostID == id && b.ApplicationUser_Id == s).SingleOrDefault();
+
+                // if record doesnt exist at all insert it
+                if (voteTot is null)
+                {
+                    model.PostID = id;
+                    model.ApplicationUser_Id = User.Identity.GetUserId();
+                    model.VoteType = type;
+
+                    _context.UserVotes.Add(model);
+                    _context.SaveChanges();
+                }
+                else if (voteTot != null && voteTot.VoteType != type)
+                {
+                    //grab record from database to make edit
+                    var voteRecinDB = _context.UserVotes.Single(c => c.Id == voteTot.Id);
+
+                    //model.PostID = voteTot.PostID;
+                    //model.ApplicationUser_Id = User.Identity.GetUserId();
+                    //model.Id = voteTot.Id;
+                    //model.VoteType = type;
+                    //update votetype here
+
+                    //edit record 
+                    voteRecinDB.VoteType = type;
+                    //save record
+                    _context.SaveChanges();
+                }
+
+
+
+
+                //TODO: change to dynamic subreddit location
+                return Redirect("/r/gaming");
+            }
+
+            return Content("No User logged in.");
+
+         
         }
     }
 }

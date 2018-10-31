@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201810230833063_AddUserIDForeignKey1.Designer.cs">
       <DependentUpon>201810230833063_AddUserIDForeignKey1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810311111337_AddedUserIDIntoVotes.cs" />
+    <Compile Include="Migrations\201810311111337_AddedUserIDIntoVotes.Designer.cs">
+      <DependentUpon>201810311111337_AddedUserIDIntoVotes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -380,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810230833063_AddUserIDForeignKey1.resx">
       <DependentUpon>201810230833063_AddUserIDForeignKey1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810311111337_AddedUserIDIntoVotes.resx">
+      <DependentUpon>201810311111337_AddedUserIDIntoVotes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

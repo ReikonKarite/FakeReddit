@@ -10,6 +10,7 @@ namespace FakeReddit.Models
         public int Id { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public string ApplicationUser_Id { get; set; }
 
 
         public Post Post { get; set; }
