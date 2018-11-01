@@ -288,6 +288,7 @@
     <Compile Include="Models\UserVote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CommentUsers.cs" />
     <Compile Include="ViewModels\SubRedditPostsViewModel.cs" />
     <Compile Include="ViewModels\VMComments.cs" />
   </ItemGroup>

@@ -40,7 +40,7 @@
         <div class="col-lg-11">
             <h2>@item.Title</h2><br />
             @item.UserName <br />
-            @Html.ActionLink("View Comments" , "GetComment", "Comments", new {ID= item.PostID, PostTitle = item.Title, PostContent = item.Content},null)
+            @Html.ActionLink("View Comments" , "GetComment", "Comments", new {ID= item.PostID},null)
         </div>
         <div class="col-lg-1 myNewDivHeight">
 

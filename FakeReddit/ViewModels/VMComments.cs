@@ -10,8 +10,12 @@ namespace FakeReddit.ViewModels
     {
         public string CommentTitle { get; set; }
         public string CommentContent { get; set; }
-        public string UserName { get; set; }
+        public int PostID { get; set; }
 
+        public IEnumerable<Comment> Comments{ get; set; }
+        public IEnumerable<ApplicationUser> Users { get; set; }
+
+        public IEnumerable<CommentUsers> ComUsers { get; set; }
 
 
     }

@@ -21,7 +21,7 @@
         @Html.TextAreaFor(s => s.Content, new { @class = "form-control" })
         @Html.ValidationMessageFor(s => s.Content)
     </div>
-
+        
     @Html.HiddenFor(s=> Model.SubRedditID)
     @Html.HiddenFor(s => Model.ApplicationUser_Id)
 

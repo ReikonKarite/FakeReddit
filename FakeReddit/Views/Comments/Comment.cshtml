@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FakeReddit.ViewModels.VMComments>
+﻿@model FakeReddit.ViewModels.VMComments
 
 @{
     ViewBag.Title = "Comment";
@@ -7,14 +7,35 @@
 <h2>@ViewBag.PostTitle</h2>
 <p>@ViewBag.PostContent</p>
 
-@foreach (var item in Model)
+@foreach (var item in Model.Comments.ToList())
 {
 <div class="row" style="background-color:lightgrey;border:1px solid black;margin-bottom:4px;">
-    <strong>@item.UserName</strong>
+    <strong>USERNAME: </strong>
 
     <div class="col-lg-12">
-        @item.CommentContent
+        @item.Content
 
     </div>
 </div>
-        }
+}
+
+@using (Html.BeginForm("Save", "Comments"))
+{
+<div class="row">
+    
+    <div class="form-group">
+        <div class="col-lg-12">
+            @Html.TextArea("Comment", null, new { @class = "form-control", @style = "min-width:100%;" })
+            @Html.TextAreaFor(x=>x.CommentContent)
+
+            
+            @Html.HiddenFor(x=>x.PostID)
+
+
+        </div>
+        <div class="col-lg-12" style="padding-top:10px">
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
+        </div>
+    </div>
+</div>
+}
