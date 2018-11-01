@@ -9,10 +9,13 @@ namespace FakeReddit.Models
     public class Comment
     {
         public int Id { get; set; }
-        public int Title { get; set; }
-        public int Content { get; set; }
+        public String Title { get; set; }
+        public String Content { get; set; }
 
         public Post Post { get; set; }
         public int PostID { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
+        public string ApplicationUser_Id { get; set; }
     }
 }

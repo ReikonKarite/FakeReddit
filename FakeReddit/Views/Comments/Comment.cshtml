@@ -1,0 +1,20 @@
+﻿@model IEnumerable<FakeReddit.ViewModels.VMComments>
+
+@{
+    ViewBag.Title = "Comment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.PostTitle</h2>
+<p>@ViewBag.PostContent</p>
+
+@foreach (var item in Model)
+{
+<div class="row" style="background-color:lightgrey;border:1px solid black;margin-bottom:4px;">
+    <strong>@item.UserName</strong>
+
+    <div class="col-lg-12">
+        @item.CommentContent
+
+    </div>
+</div>
+        }

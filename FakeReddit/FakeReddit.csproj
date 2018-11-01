@@ -228,6 +228,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -268,6 +269,14 @@
     <Compile Include="Migrations\201810311111337_AddedUserIDIntoVotes.Designer.cs">
       <DependentUpon>201810311111337_AddedUserIDIntoVotes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810311505157_AddedRelationshiptoComments.cs" />
+    <Compile Include="Migrations\201810311505157_AddedRelationshiptoComments.Designer.cs">
+      <DependentUpon>201810311505157_AddedRelationshiptoComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810311526065_ChangeCommentDatatypes.cs" />
+    <Compile Include="Migrations\201810311526065_ChangeCommentDatatypes.Designer.cs">
+      <DependentUpon>201810311526065_ChangeCommentDatatypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -280,6 +289,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\SubRedditPostsViewModel.cs" />
+    <Compile Include="ViewModels\VMComments.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -345,6 +355,7 @@
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Subreddits\Index.cshtml" />
     <Content Include="Views\Posts\NewPost.cshtml" />
+    <Content Include="Views\Comments\Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -387,6 +398,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810311111337_AddedUserIDIntoVotes.resx">
       <DependentUpon>201810311111337_AddedUserIDIntoVotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810311505157_AddedRelationshiptoComments.resx">
+      <DependentUpon>201810311505157_AddedRelationshiptoComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810311526065_ChangeCommentDatatypes.resx">
+      <DependentUpon>201810311526065_ChangeCommentDatatypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
