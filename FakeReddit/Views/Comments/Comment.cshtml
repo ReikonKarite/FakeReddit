@@ -7,13 +7,17 @@
 <h2>@ViewBag.PostTitle</h2>
 <p>@ViewBag.PostContent</p>
 
-@foreach (var item in Model.Comments.ToList())
+
+
+@foreach (var item in Model.ComUsers.ToList())
 {
 <div class="row" style="background-color:lightgrey;border:1px solid black;margin-bottom:4px;">
-    <strong>USERNAME: </strong>
+    <strong> USERNAME @item.UserName
+
+    </strong>
 
     <div class="col-lg-12">
-        @item.Content
+         @item.Comments
 
     </div>
 </div>
