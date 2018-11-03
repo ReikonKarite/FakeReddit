@@ -40,9 +40,17 @@ namespace FakeReddit.Controllers
                 _context.Posts.Add(Post);
             }
 
-            _context.SaveChanges();
+            if (User.Identity.GetUserId() != null)
+            {
 
-            return RedirectToAction("Index", Post);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index", Post);
+            }
+            else
+            {
+                return Content("not logged in");
+            }
         }
 
         public ActionResult New(int Id)
