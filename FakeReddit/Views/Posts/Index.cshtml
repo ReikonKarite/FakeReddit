@@ -5,11 +5,6 @@
     }
 
 
-     .myNewDivHeight{
-         height:140px;
-     }
-
-
 
 
 </style>
@@ -22,7 +17,6 @@
 
 
 <div class="row">
-    <div class="row">
         <div class="col-lg-8">
             <h2>@ViewBag.Title</h2>
         </div>
@@ -30,23 +24,38 @@
 
             @Html.ActionLink("Add Post", "New", "Posts", new { Id = @ViewBag.SubId }, new { @class = "btn btn-success btn-block btn-lg", @style= "min-height: 53px; margin-bottom: 5px; margin-top: 5px;line-height: 180%;" })
         </div>
-    </div>
+
 </div>
-<div class="row" style="border-top:1px solid black">
+<hr />
+<div class="row" style="">
     @foreach (var item in Model)
     {
-    <div class="col-lg-12 myNewDivHeight" style="background-color:lightgrey; border-bottom:1px solid Black ">
+    <div class="col-lg-12" style="background-color:#effbfb; border-radius: 10px; margin-bottom: 4px; padding-bottom:20px;">
 
         <div class="col-lg-11">
-            <h2>@item.Title</h2><br />
+            <h3 style="">@item.Title</h3><br />
             @item.UserName <br />
             @Html.ActionLink("View Comments" , "GetComment", "Comments", new {ID= item.PostID},null)
         </div>
-        <div class="col-lg-1 myNewDivHeight">
+        <div class="col-lg-1 text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    @Html.ActionLink("▲", "AddVote", "UserVotes", new { id = item.PostID, type = 1 }, null)
 
-            @Html.ActionLink("▲", "AddVote", "UserVotes", new { id = item.PostID, type = 1 }, null)<br />
-            @item.VoteCount<br />
-            @Html.ActionLink("▼", "AddVote", "UserVotes", new { id = item.PostID, type = -1 }, null)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    @item.VoteCount
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    @Html.ActionLink("▼", "AddVote", "UserVotes", new { id = item.PostID, type = -1 }, null)
+
+                </div>
+            </div>
         </div>
 
 
