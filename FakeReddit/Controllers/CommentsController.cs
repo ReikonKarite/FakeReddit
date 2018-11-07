@@ -58,7 +58,7 @@ namespace FakeReddit.Controllers
             //CommentUsers CU = new CommentUsers();
             
             //var poo = _context.Comments.Include(c => c.ApplicationUser).Where(b=>b.PostID == ID).ToList();
-
+            
 
             //grabs data from database and populates a commentUsers viewmodel
             var poo2 = from se in _context.Comments
@@ -71,7 +71,7 @@ namespace FakeReddit.Controllers
                        };
 
            // vm.ComUsers = poo2.ToList();
-
+           
             var Model = new VMComments
             {
                 ComUsers = poo2,

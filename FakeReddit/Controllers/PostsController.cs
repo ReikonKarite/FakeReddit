@@ -106,7 +106,41 @@ namespace FakeReddit.Controllers
             //        .SqlQuery<SubRedditPostsViewModel>("select * from posts inner join Subreddits on posts.SubRedditID = Subreddits.Id inner join Users on users.Id = posts.UserID where Subreddits.Title = 'gaming'")
             //        .ToList<SubRedditPostsViewModel>();
             var players = _context.Database
-                                    .SqlQuery<SubRedditPostsViewModel>("select isnull(sum(VoteType),0) VoteCount, Posts.Title, Posts.Content, Posts.Id PostID, SubReddits.Title SubTitle, UserName, Subreddits.Id SubID from UserVotes right join posts on posts.Id = UserVotes.PostID inner join AspNetUsers on AspNetUsers.Id = posts.ApplicationUser_Id inner join Subreddits on Subreddits.Id = posts.SubRedditID where subreddits.Title = {0} group by PostID, Posts.Title, Posts.Content, Posts.Id, SubReddits.Title, UserName,Subreddits.Id", subReddit)
+                                    .SqlQuery<SubRedditPostsViewModel>( "SELECT" +
+                                                                        "   isnull(sum(VoteType), 0) VoteCount, " +
+                                                                        "   isnull(count(comments.Id), 0) ComCount, " +
+                                                                        "   Posts.Title, " +
+                                                                        "   Posts.Content, " +
+                                                                        "   Posts.Id PostID, " +
+                                                                        "   SubReddits.Title SubTitle, " +
+                                                                        "   UserName, " +
+                                                                        "   Subreddits.Id SubID " +
+                                                                        "FROM " +
+                                                                        "   UserVotes " +
+                                                                        "   RIGHT JOIN " +
+                                                                        "   posts " +
+                                                                        "   ON posts.Id = UserVotes.PostID " +
+                                                                        "   INNER JOIN " +
+                                                                        "   AspNetUsers " +
+                                                                        "   ON AspNetUsers.Id = posts.ApplicationUser_Id " +
+                                                                        "   INNER JOIN " +
+                                                                        "   Subreddits " +
+                                                                        "   ON Subreddits.Id = posts.SubRedditID " +
+                                                                        "   LEFT JOIN " +
+                                                                        "   Comments " +
+                                                                        "   ON comments.PostID = posts.Id " +
+                                                                        "WHERE " +
+                                                                        "   subreddits.Title = {0} " +
+                                                                        "GROUP BY " +
+                                                                        "   Posts.Id, " +
+                                                                        "   Posts.Title, " +
+                                                                        "   Posts.Content, " +
+                                                                        "   Posts.Id, " +
+                                                                        "   SubReddits.Title, " +
+                                                                        "   UserName, " +
+                                                                        "   Subreddits.Id " +
+                                                                        "ORDER BY " +
+                                                                        "isnull(sum(VoteType), 0) DESC", subReddit)
                                     .ToList<SubRedditPostsViewModel>();
 
             var SubId = _context.Subreddits.FirstOrDefault(s => s.Title == subReddit);
