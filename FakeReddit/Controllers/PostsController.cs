@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using FakeReddit.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Net;
 
 namespace FakeReddit.Controllers
 {
@@ -32,9 +33,13 @@ namespace FakeReddit.Controllers
             return result;
         }
 
+
         [HttpPost]
+                [ValidateInput(false)]
         public ActionResult Save(Post Post)
         {
+            Post.Content = WebUtility.HtmlDecode(Post.Content);
+
             if (Post.Id == 0)
             {
                 _context.Posts.Add(Post);
@@ -45,7 +50,7 @@ namespace FakeReddit.Controllers
 
                 _context.SaveChanges();
 
-                return RedirectToAction("Index", Post);
+                return Redirect("/r/gaming");
             }
             else
             {
@@ -108,7 +113,7 @@ namespace FakeReddit.Controllers
             var players = _context.Database
                                     .SqlQuery<SubRedditPostsViewModel>( "SELECT" +
                                                                         "   isnull(sum(VoteType), 0) VoteCount, " +
-                                                                        "   isnull(count(comments.Id), 0) ComCount, " +
+                                                                        "   isnull(count(Comments.Id), 0) ComCount, " +
                                                                         "   Posts.Title, " +
                                                                         "   Posts.Content, " +
                                                                         "   Posts.Id PostID, " +

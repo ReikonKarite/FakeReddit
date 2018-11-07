@@ -5,19 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>@ViewBag.PostTitle</h2>
-<p>@ViewBag.PostContent</p>
-
+@Html.Raw(HttpUtility.HtmlDecode(@ViewBag.PostContent))
 
 
 @foreach (var item in Model.ComUsers.ToList())
 {
 <div class="row" style="background-color:lightgrey;border:1px solid black;margin-bottom:4px;">
-    <strong> USERNAME @item.UserName
+    <strong>
+        USERNAME @item.UserName
 
     </strong>
 
     <div class="col-lg-12">
-         @item.Comments
+        @item.Comments
 
     </div>
 </div>
@@ -25,20 +25,20 @@
 
 @using (Html.BeginForm("Save", "Comments"))
 {
-<div class="row">
-    
-    <div class="form-group">
-        <div class="col-lg-12">
-            @Html.TextAreaFor(x=>x.CommentContent, new { @class = "form-control", @style = "min-width:100%;" })
+    <div class="row">
 
-            
-            @Html.HiddenFor(x=>x.PostID)
+        <div class="form-group">
+            <div class="col-lg-12">
+                @Html.TextAreaFor(x => x.CommentContent, new { @class = "form-control", @style = "min-width:100%;" })
 
 
-        </div>
-        <div class="col-lg-12" style="padding-top:10px">
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
+                @Html.HiddenFor(x => x.PostID)
+
+
+            </div>
+            <div class="col-lg-12" style="padding-top:10px">
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
+            </div>
         </div>
     </div>
-</div>
 }

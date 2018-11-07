@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using FakeReddit.Models;
+using System.Web.Mvc;
 
 namespace FakeReddit.Models
 {
@@ -12,6 +13,8 @@ namespace FakeReddit.Models
     {
         public int Id { get; set; }
         public string Title {get; set;}
+
+        [AllowHtml]
         public string Content { get; set; }
 
 
