@@ -49,7 +49,6 @@ namespace FakeReddit.Controllers
             {
 
                 _context.SaveChanges();
-
                 return Redirect("/r/gaming");
             }
             else
@@ -111,41 +110,7 @@ namespace FakeReddit.Controllers
             //        .SqlQuery<SubRedditPostsViewModel>("select * from posts inner join Subreddits on posts.SubRedditID = Subreddits.Id inner join Users on users.Id = posts.UserID where Subreddits.Title = 'gaming'")
             //        .ToList<SubRedditPostsViewModel>();
             var players = _context.Database
-                                    .SqlQuery<SubRedditPostsViewModel>( "SELECT" +
-                                                                        "   isnull(sum(VoteType), 0) VoteCount, " +
-                                                                        "   isnull(count(Comments.Id), 0) ComCount, " +
-                                                                        "   Posts.Title, " +
-                                                                        "   Posts.Content, " +
-                                                                        "   Posts.Id PostID, " +
-                                                                        "   SubReddits.Title SubTitle, " +
-                                                                        "   UserName, " +
-                                                                        "   Subreddits.Id SubID " +
-                                                                        "FROM " +
-                                                                        "   UserVotes " +
-                                                                        "   RIGHT JOIN " +
-                                                                        "   posts " +
-                                                                        "   ON posts.Id = UserVotes.PostID " +
-                                                                        "   INNER JOIN " +
-                                                                        "   AspNetUsers " +
-                                                                        "   ON AspNetUsers.Id = posts.ApplicationUser_Id " +
-                                                                        "   INNER JOIN " +
-                                                                        "   Subreddits " +
-                                                                        "   ON Subreddits.Id = posts.SubRedditID " +
-                                                                        "   LEFT JOIN " +
-                                                                        "   Comments " +
-                                                                        "   ON comments.PostID = posts.Id " +
-                                                                        "WHERE " +
-                                                                        "   subreddits.Title = {0} " +
-                                                                        "GROUP BY " +
-                                                                        "   Posts.Id, " +
-                                                                        "   Posts.Title, " +
-                                                                        "   Posts.Content, " +
-                                                                        "   Posts.Id, " +
-                                                                        "   SubReddits.Title, " +
-                                                                        "   UserName, " +
-                                                                        "   Subreddits.Id " +
-                                                                        "ORDER BY " +
-                                                                        "isnull(sum(VoteType), 0) DESC", subReddit)
+                                    .SqlQuery<SubRedditPostsViewModel>("SELECT isnull(sum(VoteType), 0) VoteCount, count(DISTINCT Comments.Id) AS ComCount, case when Voted.Id is not null then VoteType else 0 end As Voted, Posts.Title, Posts.Content, Posts.Id PostID, SubReddits.Title SubTitle, AspNetUsers.UserName, Subreddits.Id SubID FROM UserVotes RIGHT JOIN posts ON posts.Id = UserVotes.PostID INNER JOIN AspNetUsers ON AspNetUsers.Id = posts.ApplicationUser_Id INNER JOIN Subreddits ON Subreddits.Id = posts.SubRedditID LEFT JOIN Comments ON comments.PostID = posts.Id left join AspNetUsers Voted on UserVotes.ApplicationUser_Id = Voted.Id WHERE subreddits.Title = 'gaming' GROUP BY Posts.Id, Posts.Title, Posts.Content, Posts.Id, SubReddits.Title, AspNetUsers.UserName, Subreddits.Id, case when Voted.Id is not null then VoteType else 0 end ORDER BY isnull(sum(VoteType), 0) DESC ", subReddit)
                                     .ToList<SubRedditPostsViewModel>();
 
             var SubId = _context.Subreddits.FirstOrDefault(s => s.Title == subReddit);

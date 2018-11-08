@@ -19,6 +19,7 @@ namespace FakeReddit.ViewModels
         public int ComCount { get; set; }
         public string SubTitle { get; set; }
         public string UserName { get; set; }
+        public int Voted { get; set; }
 
 
         //public string SubredditTitle { get; set; }//subreddit

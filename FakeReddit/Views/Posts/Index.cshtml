@@ -3,6 +3,13 @@
     h2 {
         text-transform: capitalize;
     }
+    .listitem {
+        background-color: #e8fffe;
+        border-radius: 4px;
+        margin-bottom: 4px;
+        padding-bottom: 20px;
+        border: 1px solid #a0a0a0;
+    }
 
 
 
@@ -30,7 +37,21 @@
 <div class="row" style="">
     @foreach (var item in Model)
     {
-    <div class="col-lg-12" style="background-color:#e8fffe; border-radius: 10px; margin-bottom: 4px; padding-bottom:20px; border: 1px solid #a0a0a0;">
+
+       
+            var upvote="";
+            var downvote="";
+
+            if (item.Voted == -1)
+            {
+                downvote = "Black";
+            } else if(item.Voted == 1)
+            {
+                upvote = "Black";
+            };
+
+        
+    <div class="col-lg-12 listitem">
 
         <div class="col-lg-11">
             <h3 style="">@item.Title</h3><br />
@@ -40,7 +61,7 @@
         <div class="col-lg-1 text-center">
             <div class="row">
                 <div class="col-lg-12">
-                    @Html.ActionLink("▲", "AddVote", "UserVotes", new { id = item.PostID, type = 1 }, null)
+                    @Html.ActionLink("▲", "AddVote", "UserVotes", new { id = item.PostID, type = 1 },new {@style="color:" + @upvote })
 
                 </div>
             </div>
@@ -52,7 +73,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    @Html.ActionLink("▼", "AddVote", "UserVotes", new { id = item.PostID, type = -1 }, null)
+                    @Html.ActionLink("▼", "AddVote", "UserVotes", new { id = item.PostID, type = -1 }, new { @style = "color:" + downvote })
 
                 </div>
             </div>
