@@ -277,6 +277,10 @@
     <Compile Include="Migrations\201810311526065_ChangeCommentDatatypes.Designer.cs">
       <DependentUpon>201810311526065_ChangeCommentDatatypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811121604551_AddDateCreatedToPost.cs" />
+    <Compile Include="Migrations\201811121604551_AddDateCreatedToPost.Designer.cs">
+      <DependentUpon>201811121604551_AddDateCreatedToPost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -834,6 +838,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810311526065_ChangeCommentDatatypes.resx">
       <DependentUpon>201810311526065_ChangeCommentDatatypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811121604551_AddDateCreatedToPost.resx">
+      <DependentUpon>201811121604551_AddDateCreatedToPost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

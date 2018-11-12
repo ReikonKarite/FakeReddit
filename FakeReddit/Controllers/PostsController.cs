@@ -64,7 +64,7 @@ namespace FakeReddit.Controllers
 
             model.SubRedditID = Id;
             model.ApplicationUser_Id = User.Identity.GetUserId();
-
+            model.CreatedDate = DateTime.Now;
 
 
             return View("NewPost", model);
@@ -110,7 +110,7 @@ namespace FakeReddit.Controllers
             //        .SqlQuery<SubRedditPostsViewModel>("select * from posts inner join Subreddits on posts.SubRedditID = Subreddits.Id inner join Users on users.Id = posts.UserID where Subreddits.Title = 'gaming'")
             //        .ToList<SubRedditPostsViewModel>();
             var players = _context.Database
-                                    .SqlQuery<SubRedditPostsViewModel>("SELECT isnull(sum(VoteType), 0) VoteCount, count(DISTINCT Comments.Id) AS ComCount, case when Voted.Id is not null then VoteType else 0 end As Voted, Posts.Title, Posts.Content, Posts.Id PostID, SubReddits.Title SubTitle, AspNetUsers.UserName, Subreddits.Id SubID FROM UserVotes RIGHT JOIN posts ON posts.Id = UserVotes.PostID INNER JOIN AspNetUsers ON AspNetUsers.Id = posts.ApplicationUser_Id INNER JOIN Subreddits ON Subreddits.Id = posts.SubRedditID LEFT JOIN Comments ON comments.PostID = posts.Id left join AspNetUsers Voted on UserVotes.ApplicationUser_Id = Voted.Id WHERE subreddits.Title = 'gaming' GROUP BY Posts.Id, Posts.Title, Posts.Content, Posts.Id, SubReddits.Title, AspNetUsers.UserName, Subreddits.Id, case when Voted.Id is not null then VoteType else 0 end ORDER BY isnull(sum(VoteType), 0) DESC ", subReddit)
+                                    .SqlQuery<SubRedditPostsViewModel>("SELECT Isnull(Sum(votetype), 0) VoteCount, Count(DISTINCT comments.id) AS ComCount, CASE WHEN Voted.id = {1} THEN votetype ELSE 0 END AS Voted, posts.title, posts.content, posts.id PostID, subreddits.title SubTitle, aspnetusers.username, subreddits.id SubID FROM uservotes RIGHT JOIN posts ON posts.id = uservotes.postid INNER JOIN aspnetusers ON aspnetusers.id = posts.applicationuser_id INNER JOIN subreddits ON subreddits.id = posts.subredditid LEFT JOIN comments ON comments.postid = posts.id LEFT JOIN aspnetusers Voted ON uservotes.applicationuser_id = Voted.id WHERE subreddits.title = {0} GROUP BY posts.id, posts.title, posts.content, posts.id, subreddits.title, aspnetusers.username, subreddits.id, CASE WHEN Voted.id = {1} THEN votetype ELSE 0 END ORDER BY Isnull(Sum(votetype), 0) DESC ", subReddit, User.Identity.GetUserId())
                                     .ToList<SubRedditPostsViewModel>();
 
             var SubId = _context.Subreddits.FirstOrDefault(s => s.Title == subReddit);

@@ -18,6 +18,9 @@ namespace FakeReddit.Models
         public string Content { get; set; }
 
 
+        public DateTime CreatedDate { get; set; }
+
+
 
         public Subreddit SubReddit { get; set; }
         public int SubRedditID { get; set; }
