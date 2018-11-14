@@ -35,20 +35,83 @@ namespace FakeReddit.Controllers
 
         public ActionResult Save(VMComments vm)
         {
+            Comment comment =new Comment();
 
-            Comment comment = new Comment();
+            //Comment comment = new Comment();
+            if (vm.CommentID !=0)
+            {
+                comment = _context.Comments.FirstOrDefault(s => s.Id == vm.CommentID);
+            }
+
+
 
             comment.Content = vm.CommentContent;
             comment.PostID = vm.PostID;
-            comment.ApplicationUser_Id = User.Identity.GetUserId(); 
+            comment.Id = vm.CommentID;
+            comment.ApplicationUser_Id = User.Identity.GetUserId();
 
-
+            if (vm.CommentID ==0)
+            { 
             _context.Comments.Add(comment);
+            }
 
             _context.SaveChanges();
 
             return RedirectToAction("GetComment", new {ID = vm.PostID });
         }
+
+        public ActionResult Edit(int PostID, int ComID)
+        {
+            //create viewmodel, query database and populate CLICKED comment inside edit box.
+
+            Comment comment = _context.Comments.Find(ComID);
+
+            VMComments vm = new VMComments();
+            //CommentUsers CU = new CommentUsers();
+
+            //var poo = _context.Comments.Include(c => c.ApplicationUser).Where(b=>b.PostID == ID).ToList();
+
+
+            //grabs data from database and populates a commentUsers viewmodel
+            var poo2 = from se in _context.Comments
+                       join ew in _context.Users on se.ApplicationUser_Id equals ew.Id
+                       where se.PostID == PostID
+                       select new CommentUsers
+                       {
+                           Comments = se.Content,
+                           UserName = ew.UserName,
+                           CommentID = se.Id,
+                           PostID = se.PostID
+                       };
+
+            // vm.ComUsers = poo2.ToList();
+
+            var Model = new VMComments
+            {
+                ComUsers = poo2,
+                PostID = PostID,
+                CommentContent = comment.Content,
+                CommentID = ComID
+
+
+            };
+
+
+
+            //grab post details as well to show.
+
+            //
+            //if (comment == null || comment.ApplicationUser_Id != User.Identity.GetUserId())
+            //{
+            //    return HttpNotFound();
+            //}
+            return View("Comment", Model);
+
+
+
+        }
+
+
 
         public ActionResult GetComment(int ID)
         {
@@ -67,7 +130,11 @@ namespace FakeReddit.Controllers
                        select new CommentUsers
                        {
                            Comments = se.Content,
-                           UserName = ew.UserName
+                           UserName = ew.UserName,
+                           CommentID = se.Id,
+                           PostID = se.PostID
+                           
+                           
                        };
 
            // vm.ComUsers = poo2.ToList();

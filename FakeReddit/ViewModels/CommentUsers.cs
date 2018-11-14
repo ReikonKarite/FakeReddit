@@ -13,5 +13,7 @@ namespace FakeReddit.ViewModels
 
         public string Comments { get; set; }
         public string UserName { get; set; }
+        public int CommentID { get; set; }
+        public int PostID { get; set; }
     }
 }
