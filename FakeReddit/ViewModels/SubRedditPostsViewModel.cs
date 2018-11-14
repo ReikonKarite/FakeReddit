@@ -20,6 +20,7 @@ namespace FakeReddit.ViewModels
         public string SubTitle { get; set; }
         public string UserName { get; set; }
         public int Voted { get; set; }
+        public string Editable { get; set; }
 
 
         //public string SubredditTitle { get; set; }//subreddit

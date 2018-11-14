@@ -57,7 +57,7 @@
             <h3 style="">@item.Title</h3><br />
             @item.UserName <br />
             @Html.ActionLink("View Comments", "GetComment", "Comments", new { ID = item.PostID }, null) (@item.ComCount)
-            @Html.ActionLink("Edit", "Edit", "Posts", new { ID=item.PostID}, null)
+            @Html.ActionLink("Edit", "Edit", "Posts", new { ID=item.PostID}, new {@style="display:" + item.Editable })
         </div>
         <div class="col-lg-1 text-center">
             <div class="row">
