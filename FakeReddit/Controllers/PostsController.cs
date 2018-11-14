@@ -69,6 +69,23 @@ namespace FakeReddit.Controllers
 
             return View("NewPost", model);
         }
+
+        public ActionResult Edit(int ID)
+        {
+            Post post = _context.Posts.Find(ID);
+
+
+            if (post ==null || post.ApplicationUser_Id != User.Identity.GetUserId())
+            {
+                return HttpNotFound();
+            }
+
+
+
+
+            return View("NewPost", post);
+        }
+
         // GET: Posts
         public ActionResult Index(string subReddit)
         {
