@@ -96,7 +96,9 @@ namespace FakeReddit.Controllers
 
             };
 
-
+            var Post = _context.Posts.FirstOrDefault(s => s.Id == PostID);
+            ViewBag.PostTitle = Post.Title;
+            ViewBag.PostContent = Post.Content;
 
             //grab post details as well to show.
 
