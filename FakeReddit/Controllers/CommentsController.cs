@@ -33,6 +33,7 @@ namespace FakeReddit.Controllers
             return View();
         }
 
+        [ValidateInput(false)]
         public ActionResult Save(VMComments vm)
         {
             Comment comment =new Comment();
@@ -85,7 +86,6 @@ namespace FakeReddit.Controllers
                        };
 
             // vm.ComUsers = poo2.ToList();
-
             var Model = new VMComments
             {
                 ComUsers = poo2,

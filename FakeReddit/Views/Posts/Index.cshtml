@@ -3,6 +3,7 @@
     h2 {
         text-transform: capitalize;
     }
+
     .listitem {
         background-color: #e8fffe;
         border-radius: 4px;
@@ -10,10 +11,6 @@
         padding-bottom: 20px;
         border: 1px solid #a0a0a0;
     }
-
-
-
-
 </style>
 
 @{
@@ -23,14 +20,15 @@
 }
 
 
-<div class="row">
-        <div class="col-lg-8">
-            <h2>@ViewBag.Title</h2>
-        </div>
-        <div class="col-lg-4">
 
-            @Html.ActionLink("Add Post", "New", "Posts", new { Id = @ViewBag.SubId }, new { @class = "btn btn-success btn-block btn-lg", @style= "min-height: 53px; margin-bottom: 5px; margin-top: 5px;line-height: 180%;" })
-        </div>
+<div class="row">
+    <div class="col-lg-8">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="col-lg-4">
+
+        @Html.ActionLink("Add Post", "New", "Posts", new { Id = @ViewBag.SubId }, new { @class = "btn btn-success btn-block btn-lg", @style = "min-height: 53px; margin-bottom: 5px; margin-top: 5px;line-height: 180%;" })
+    </div>
 
 </div>
 <hr />
@@ -45,73 +43,74 @@
         if (item.Voted == -1)
         {
             downvote = "Black";
-        } else if (item.Voted == 1)
+        }
+        else if (item.Voted == 1)
         {
             upvote = "Black";
         };
 
 
-    <div class="col-lg-12 listitem">
+        <div class="col-lg-12 listitem">
 
-        <div class="col-lg-11">
-            <h3 style="">@item.Title</h3><br />
-            @item.UserName <br />
-            @Html.ActionLink("View Comments", "GetComment", "Comments", new { ID = item.PostID }, null) (@item.ComCount)
-            @Html.ActionLink("Edit", "Edit", "Posts", new { ID=item.PostID}, new {@style="display:" + item.Editable })
-        </div>
-        <div class="col-lg-1 text-center">
-            <div class="row">
-                <div class="col-lg-12">
-                    @Html.ActionLink("▲", "AddVote", "UserVotes", new { id = item.PostID, type = 1 },new {@style="color:" + @upvote })
+            <div class="col-lg-11">
+                <h3 style="">@item.Title</h3><br />
+                @item.UserName <br />
+                @Html.ActionLink("View Comments", "GetComment", "Comments", new { ID = item.PostID }, null) (@item.ComCount)
+                @Html.ActionLink("Edit", "Edit", "Posts", new { ID = item.PostID }, new { @style = "display:" + item.Editable })
+            </div>
+            <div class="col-lg-1 text-center">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @Html.ActionLink("▲", "AddVote", "UserVotes", new { id = item.PostID, type = 1 }, new { @style = "color:" + @upvote })
 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        @item.VoteCount
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        @Html.ActionLink("▼", "AddVote", "UserVotes", new { id = item.PostID, type = -1 }, new { @style = "color:" + downvote })
+
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    @item.VoteCount
 
+
+
+
+
+
+            @*<div class="col-lg-11">
+                    <a href="#"><h2>@item.Title</h2></a>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    @Html.ActionLink("▼", "AddVote", "UserVotes", new { id = item.PostID, type = -1 }, new { @style = "color:" + downvote })
+                <div class="col-lg-1">▲</div>
 
+
+                <div class="col-lg-11">
+                    @item.Content
                 </div>
-            </div>
+                <div class="col-lg-1">@item.VoteCount</div>
+
+
+                <div class="col-lg-11">
+                    @item.UserName
+                </div>
+                <div class="col-lg-1">▼</div>*@
+
+
+
+            @*<div class="col-lg-6">@item.Content</div>
+                <div class="col-lg-12">@item.UserName</div>*@
+
+
+
+
+
         </div>
 
-
-
-
-
-
-        @*<div class="col-lg-11">
-            <a href="#"><h2>@item.Title</h2></a>
-        </div>
-        <div class="col-lg-1">▲</div>
-
-
-        <div class="col-lg-11">
-            @item.Content
-        </div>
-        <div class="col-lg-1">@item.VoteCount</div>
-
-
-        <div class="col-lg-11">
-            @item.UserName
-        </div>
-        <div class="col-lg-1">▼</div>*@
-
-
-
-        @*<div class="col-lg-6">@item.Content</div>
-        <div class="col-lg-12">@item.UserName</div>*@
-
-
-
-
-
-    </div>
-  
     }
 </div>
